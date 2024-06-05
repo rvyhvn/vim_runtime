@@ -4,7 +4,7 @@ set relativenumber
 set clipboard=unnamedplus
 set cursorline
 set mouse=a
-colorscheme monochrome
+colorscheme gruvbox
 let g:gruvbox_termcolors=256
 " set guicursor=i:block
 filetype plugin indent on
@@ -27,10 +27,12 @@ else
     endif
 endif
 
+let mapleader=","
+
 " Enable blinking together with different cursor shapes for insert/command mode, and cursor highlighting:
   set guicursor=n-v-c-i:block
-  \,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor
-  \,sm:block-blinkwait175-blinkoff150-blinkon175
+  \,a:blinkwait20-blinkoff50-blinkon200-Cursor/lCursor
+  \,sm:block-blinkwait20-blinkoff20-blinkon20
 
   " Check for HTML embedded filetype as HTML
 autocmd BufNewFile,BufRead *.ezt,*.blade.php,*.erb, *.fxml set filetype=html
@@ -123,7 +125,7 @@ nmap <silent> gr <Plug>(coc-references)
 
 " Symbol renaming COC
 nmap <leader>rn <Plug>(coc-rename)
-Remap keys for applying refactor code actions
+" Remap keys for applying refactor code actions
 nmap <silent> <leader>re <Plug>(coc-codeaction-refactor)
 xmap <silent> <leader>r  <Plug>(coc-codeaction-refactor-selected)
 nmap <silent> <leader>r  <Plug>(coc-codeaction-refactor-selected)
@@ -171,37 +173,39 @@ nnoremap <leader>a ggVG
 nnoremap <C-S-A-Down> Vyp
 nnoremap <C-S-A-Up> VyP
 
+nnoremap <M-h> :vertical resize-2<CR>
+nnoremap <M-l> :vertical resize+2<CR>
 " Open config file
 " nnoremap <leader>c :tabnew ~/.vim_runtime/my_configs.vim<CR>
 " nnoremap <leader>c :execute 'tabnew ' . expand('~/.vim_runtime/my_configs.vim')<CR>
 
 " Commentary
-vnoremap <Leader>/ :Commentary<CR>
-nnoremap <Leader>// :Commentary<CR>
+vnoremap <leader>/ :Commentary<CR>
+nnoremap <leader>// :Commentary<CR>
 
-let g:lightline = {
-      \ 'colorscheme': 'PaperColor',
-      \ 'active': {
-      \   'left': [ ['mode', 'paste'], ['fugitive'],
-      \             [ 'readonly', 'filename', 'modified'] ],
-      \   'right': [ [ 'lineinfo', 'percent'], ['fileformat', 'fileencoding', 'filetype'], ['blame'] ]
-      \ },
-      \ 'component': {
-      \   'readonly': '%{&filetype=="help"?"":&readonly?"🔒":""}',
-      \   'modified': '%{&filetype=="help"?"":&modified?"+":&modifiable?"":"-"}',
-      \   'fugitive': '%{exists("*FugitiveHead")?FugitiveHead():""}'
-      \ },
-      \ 'component_visible_condition': {
-      \   'readonly': '(&filetype!="help"&& &readonly)',
-      \   'modified': '(&filetype!="help"&&(&modified||!&modifiable))',
-      \   'fugitive': '(exists("*FugitiveHead") && ""!=FugitiveHead())'
-      \ },
-      \ 'separator': { 'left': ' ', 'right': ' ' },
-      \ 'subseparator': { 'left': ' ', 'right': ' ' },
-      \ 'component_function': {
-      \   'blame': 'LightlineGitBlame',
-      \ }
-  \ }
+" let g:lightline = {
+"       \ 'colorscheme': 'nord',
+"       \ 'active': {
+"       \   'left': [ ['mode', 'paste'], ['fugitive'],
+"       \             [ 'readonly', 'filename', 'modified'] ],
+"       \   'right': [ [ 'lineinfo', 'percent'], ['fileformat', 'fileencoding', 'filetype'], ['blame'] ]
+"       \ },
+"       \ 'component': {
+"       \   'readonly': '%{&filetype=="help"?"":&readonly?"🔒":""}',
+"       \   'modified': '%{&filetype=="help"?"":&modified?"+":&modifiable?"":"-"}',
+"       \   'fugitive': '%{exists("*FugitiveHead")?FugitiveHead():""}'
+"       \ },
+"       \ 'component_visible_condition': {
+"       \   'readonly': '(&filetype!="help"&& &readonly)',
+"       \   'modified': '(&filetype!="help"&&(&modified||!&modifiable))',
+"       \   'fugitive': '(exists("*FugitiveHead") && ""!=FugitiveHead())'
+"       \ },
+"       \ 'separator': { 'left': ' ', 'right': ' ' },
+"       \ 'subseparator': { 'left': ' ', 'right': ' ' },
+"       \ 'component_function': {
+"       \   'blame': 'LightlineGitBlame',
+"       \ }
+"   \ }
 
 " Vimtex
 let g:vimtex_view_method = 'zathura'
