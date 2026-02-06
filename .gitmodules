@@ -66,7 +66,7 @@
 	url = https://github.com/iamcco/markdown-preview.nvim
 [submodule "my_plugins/nnn.vim"]
 	path = my_plugins/nnn.vim
-	url = git@github.com-alt:mcchrish/nnn.vim
+	url = git@github.com:mcchrish/nnn.vim
 [submodule "my_plugins/php.vim"]
 	path = my_plugins/php.vim
 	url = https://github.com/StanAngeloff/php.vim
@@ -109,6 +109,3 @@
 [submodule "my_plugins/vim-vsnip-integ"]
 	path = my_plugins/vim-vsnip-integ
 	url = https://github.com/hrsh7th/vim-vsnip-integ
-[submodule "my_plugins/zettelkasten.vim"]
-	path = my_plugins/zettelkasten.vim
-	url = git@github.com-alt:Deluxe8841/zettelkasten.vim
