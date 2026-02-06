@@ -416,3 +416,23 @@ Maintaining this Vim configuration isn't my day job. Daily I am the founder/CEO 
 
 PS: Using Vim isn't a requirement 😄
 
+## Installed LSPs
+
+- analysis-server-dart-snapshot
+- clangd
+- deno
+- eclipse-jdt-ls
+- emmylua-ls
+- gopls
+- intelephense
+- marksman
+- pylsp-all
+- rubocop-lsp-mode
+- ruby-lsp
+- tinymist
+- typescript-language-server
+- vim-language-server
+- vscode-html-language-server
+- vscode-json-language-server
+- yaml-language-server
+
