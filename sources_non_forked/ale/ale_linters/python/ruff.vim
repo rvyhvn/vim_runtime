@@ -7,6 +7,7 @@ call ale#Set('python_ruff_use_global', get(g:, 'ale_use_global_executables', 0))
 call ale#Set('python_ruff_change_directory', 1)
 call ale#Set('python_ruff_auto_pipenv', 0)
 call ale#Set('python_ruff_auto_poetry', 0)
+call ale#Set('python_ruff_auto_uv', 0)
 
 call ale#fix#registry#Add('ruff',
 \   'ale#fixers#ruff#Fix',
@@ -25,7 +26,28 @@ function! ale_linters#python#ruff#GetExecutable(buffer) abort
         return 'poetry'
     endif
 
+    if (ale#Var(a:buffer, 'python_auto_uv') || ale#Var(a:buffer, 'python_ruff_auto_uv'))
+    \ && ale#python#UvPresent(a:buffer)
+        return 'uv'
+    endif
+
     return ale#python#FindExecutable(a:buffer, 'python_ruff', ['ruff'])
+endfunction
+
+function! ale_linters#python#ruff#RunWithVersionCheck(buffer) abort
+    let l:executable = ale_linters#python#ruff#GetExecutable(a:buffer)
+    let l:exec_args = l:executable =~? '\(pipenv\|poetry\|uv\)$'
+    \   ? ' run ruff'
+    \   : ''
+
+    let l:command = ale#Escape(l:executable) . l:exec_args . ' --version'
+
+    return ale#semver#RunWithVersionCheck(
+    \   a:buffer,
+    \   l:executable,
+    \   l:command,
+    \   function('ale_linters#python#ruff#GetCommand'),
+    \)
 endfunction
 
 function! ale_linters#python#ruff#GetCwd(buffer) abort
@@ -41,13 +63,18 @@ endfunction
 
 function! ale_linters#python#ruff#GetCommand(buffer, version) abort
     let l:executable = ale_linters#python#ruff#GetExecutable(a:buffer)
-    let l:exec_args = l:executable =~? 'pipenv\|poetry$'
+    let l:exec_args = l:executable =~? '\(pipenv\|poetry\|uv\)$'
     \   ? ' run ruff'
     \   : ''
 
-    " NOTE: ruff version `0.0.69` supports liniting input from stdin
+    " NOTE: ruff 0.3.0 deprecates `ruff <path>` in favor of `ruff check <path>`
+    let l:exec_args = l:exec_args
+    \   . (ale#semver#GTE(a:version, [0, 3, 0]) ? ' check' : '')
+
+    " NOTE: ruff version `0.0.69` supports linting input from stdin
     " NOTE: ruff version `0.1.0` deprecates `--format text`
     return ale#Escape(l:executable) . l:exec_args . ' -q'
+    \   . ' --no-fix'
     \   . ale#Pad(ale#Var(a:buffer, 'python_ruff_options'))
     \   . (ale#semver#GTE(a:version, [0, 1, 0]) ? ' --output-format json-lines' : ' --format json-lines')
     \   . (ale#semver#GTE(a:version, [0, 0, 69]) ? ' --stdin-filename %s -' : ' %s')
@@ -56,8 +83,31 @@ endfunction
 function! ale_linters#python#ruff#Handle(buffer, lines) abort
     let l:output = []
 
+    " Read all lines of ruff output and parse use all the valid JSONL lines.
     for l:line in a:lines
-        let l:item = json_decode(l:line)
+        try
+            let l:item = json_decode(l:line)
+        catch
+            " If we can't decode a line, skip it.
+            continue
+        endtry
+
+        if empty(l:item)
+            continue
+        endif
+
+        if (l:item.code is# 'W291' || l:item.code is# 'W293')
+        \&& !ale#Var(a:buffer, 'warn_about_trailing_whitespace')
+            " Skip warnings for trailing whitespace if the option is off.
+            continue
+        endif
+
+        if l:item.code is# 'W391'
+        \&& !ale#Var(a:buffer, 'warn_about_trailing_blank_lines')
+            " Skip warnings for trailing blank lines if the option is off
+            continue
+        endif
+
         call add(l:output, {
         \   'lnum': l:item.location.row,
         \   'col': l:item.location.column,
@@ -76,12 +126,7 @@ call ale#linter#Define('python', {
 \   'name': 'ruff',
 \   'executable': function('ale_linters#python#ruff#GetExecutable'),
 \   'cwd': function('ale_linters#python#ruff#GetCwd'),
-\   'command': {buffer -> ale#semver#RunWithVersionCheck(
-\       buffer,
-\       ale_linters#python#ruff#GetExecutable(buffer),
-\       '%e --version',
-\       function('ale_linters#python#ruff#GetCommand'),
-\   )},
+\   'command': function('ale_linters#python#ruff#RunWithVersionCheck'),
 \   'callback': 'ale_linters#python#ruff#Handle',
 \   'output_stream': 'both',
 \   'read_buffer': 1,

@@ -87,7 +87,7 @@ After installing NERDTree, the best way to learn it is to turn on the Quick Help
 NERDTree can be extended with custom mappings and functions using its built-in API. The details of this API are described in the included documentation. Several plugins have been written, and are available on Github for installation like any other plugin. The plugins in this list are maintained (or not) by their respective owners, and certain combinations may be incompatible.
 
 * [Xuyuanp/nerdtree-git-plugin](https://github.com/Xuyuanp/nerdtree-git-plugin): Shows Git status flags for files and folders in NERDTree.
-* [ryanoasis/vim-devicons](https://github.com/ryanoasis/vim-devicons): Adds filetype-specific icons to NERDTree files and folders,
+* [ryanoasis/vim-devicons](https://github.com/ryanoasis/vim-devicons): Adds filetype-specific icons to NERDTree files and folders.
 * [tiagofumo/vim-nerdtree-syntax-highlight](https://github.com/tiagofumo/vim-nerdtree-syntax-highlight): Adds syntax highlighting to NERDTree based on filetype.
 * [scrooloose/nerdtree-project-plugin](https://github.com/scrooloose/nerdtree-project-plugin): Saves and restores the state of the NERDTree between sessions.
 * [PhilRunninger/nerdtree-buffer-ops](https://github.com/PhilRunninger/nerdtree-buffer-ops): 1) Highlights open files in a different color. 2) Closes a buffer directly from NERDTree.
@@ -149,6 +149,24 @@ autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists('s:std_in
 ```
 
 ### How can I close Vim or a tab automatically when NERDTree is the last window?
+
+Because of the changes in how Vim handles its `autocmd` and layout locking `quit` command is no longer available in Vim9 auto commands, Depending on which version you're running select one of these solutions.
+
+__NeoVim users should be able to choose either one of them!__
+
+#### Vim9
+
+```vim
+" Exit Vim if NERDTree is the only window remaining in the only tab.
+autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | call feedkeys(":quit\<CR>:\<BS>") | endif
+```
+---
+```vim
+" Close the tab if NERDTree is the only window remaining in it.
+autocmd BufEnter * if winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | call feedkeys(":quit\<CR>:\<BS>") | endif
+```
+
+#### Vim8 or older
 
 ```vim
 " Exit Vim if NERDTree is the only window remaining in the only tab.

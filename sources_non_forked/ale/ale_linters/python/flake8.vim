@@ -7,6 +7,7 @@ call ale#Set('python_flake8_use_global', get(g:, 'ale_use_global_executables', 0
 call ale#Set('python_flake8_change_directory', 'project')
 call ale#Set('python_flake8_auto_pipenv', 0)
 call ale#Set('python_flake8_auto_poetry', 0)
+call ale#Set('python_flake8_auto_uv', 0)
 
 function! s:UsingModule(buffer) abort
     return ale#Var(a:buffer, 'python_flake8_options') =~# ' *-m flake8'
@@ -21,6 +22,11 @@ function! ale_linters#python#flake8#GetExecutable(buffer) abort
     if (ale#Var(a:buffer, 'python_auto_poetry') || ale#Var(a:buffer, 'python_flake8_auto_poetry'))
     \ && ale#python#PoetryPresent(a:buffer)
         return 'poetry'
+    endif
+
+    if (ale#Var(a:buffer, 'python_auto_uv') || ale#Var(a:buffer, 'python_flake8_auto_uv'))
+    \ && ale#python#UvPresent(a:buffer)
+        return 'uv'
     endif
 
     if !s:UsingModule(a:buffer)
@@ -57,7 +63,7 @@ function! ale_linters#python#flake8#GetCwd(buffer) abort
     endif
 
     if (l:change_directory is# 'project' && empty(l:cwd))
-    \|| l:change_directory is# 1
+    \|| l:change_directory
     \|| l:change_directory is# 'file'
         let l:cwd = '%s:h'
     endif
@@ -68,7 +74,7 @@ endfunction
 function! ale_linters#python#flake8#GetCommand(buffer, version) abort
     let l:executable = ale_linters#python#flake8#GetExecutable(a:buffer)
 
-    let l:exec_args = l:executable =~? 'pipenv\|poetry$'
+    let l:exec_args = l:executable =~? '\(pipenv\|poetry\|uv\)$'
     \   ? ' run flake8'
     \   : ''
 

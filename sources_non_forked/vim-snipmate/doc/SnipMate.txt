@@ -232,8 +232,8 @@ Autocommands allow code written by the user to be executed automatically at
 certain points within SnipMate's normal execution. Here is a list of events
 available to the User. All of these are subject to change.
 
-SnipTriggerPre                                       *SnipMate-SnipTriggerPre*
-SnipTriggerPost                                     *SnipMate-SnipTriggerPost*
+SnipLookupPre                                       *SnipMate-SnipLookupPre*
+SnipLookupPost                                     *SnipMate-SnipLookupPost*
 
                 These two events are run when determining what text to use as
                 the trigger. The Pre version can be used to forgo SnipMate's
@@ -246,8 +246,8 @@ SnipTriggerPost                                     *SnipMate-SnipTriggerPost*
                 possible lookups that SnipMate should try as possible
                 triggers. They are tried in order from the beginning.
 
-                If SnipTriggerPre runs and puts anything in b:snip_lookups,
-                SnipMate's normal lookups will not be tried. SnipTriggerPost
+                If SnipLookupPre runs and puts anything in b:snip_lookups,
+                SnipMate's normal lookups will not be tried. SnipLookupPost
                 runs regardless.
 
                 The following example only allows a '.' as a possible trigger
@@ -481,6 +481,20 @@ The first example returns the filename if it the file has been named, and an
 empty string if it hasn't. The second returns the filename if it's been named,
 and "name" if it hasn't. The third returns the filename followed by "_foo" if
 it has been named, and an empty string if it hasn't.
+
+                                                         *SnipMate-selections*
+Selections~
+
+Note: Version 1 of the parser is required for selections.
+
+In addition to providing sample text as a placeholder, you can specify a list
+of options that the user can choose from via |popupmenu-completion|:
+>
+    snippet todo
+        # ${1|TODO|FIXME|BUG}: $2
+< Notice that the : is replaced by the pipe |. Currently mirrors and
+placeholders are not supported within selection text. If alterations are made
+to the selected text, the stop becomes a regular stop, losing the selections.
 
                                                              *SnipMate-visual*
 The VISUAL Stop~

@@ -1,0 +1,114 @@
+[submodule "my_plugins/rainbow"]
+	path = my_plugins/rainbow
+	url = https://github.com/luochen1990/rainbow
+[submodule "my_plugins/vim-256noir-colorscheme"]
+	path = my_plugins/vim-256noir-colorscheme
+	url = https://github.com/andreasvc/vim-256noir
+[submodule "my_plugins/vim-colors-meh"]
+	path = my_plugins/vim-colors-meh
+	url = https://github.com/davidosomething/vim-colors-meh
+[submodule "my_plugins/vim-commentary"]
+	path = my_plugins/vim-commentary
+	url = https://github.com/tpope/vim-commentary
+[submodule "my_plugins/vim-endwise"]
+	path = my_plugins/vim-endwise
+	url = https://github.com/tpope/vim-endwise
+[submodule "my_plugins/vim-indent-guides"]
+	path = my_plugins/vim-indent-guides
+	url = https://github.com/preservim/vim-indent-guides
+[submodule "my_plugins/vim-monochrome"]
+	path = my_plugins/vim-monochrome
+	url = https://github.com/fxn/vim-monochrome
+[submodule "my_plugins/vim-sunbather"]
+	path = my_plugins/vim-sunbather
+	url = https://github.com/nikolvs/vim-sunbather
+[submodule "my_plugins/vimtex"]
+	path = my_plugins/vimtex
+	url = https://github.com/lervag/vimtex
+[submodule "my_plugins/asyncomplete-buffer.vim"]
+	path = my_plugins/asyncomplete-buffer.vim
+	url = https://github.com/prabirshrestha/asyncomplete-buffer.vim
+[submodule "my_plugins/asyncomplete-file.vim"]
+	path = my_plugins/asyncomplete-file.vim
+	url = https://github.com/prabirshrestha/asyncomplete-file.vim
+[submodule "my_plugins/asyncomplete-lsp.vim"]
+	path = my_plugins/asyncomplete-lsp.vim
+	url = https://github.com/prabirshrestha/asyncomplete-lsp.vim.git
+[submodule "my_plugins/asyncomplete.vim"]
+	path = my_plugins/asyncomplete.vim
+	url = https://github.com/prabirshrestha/asyncomplete.vim.git
+[submodule "my_plugins/async.vim"]
+	path = my_plugins/async.vim
+	url = https://github.com/prabirshrestha/async.vim
+[submodule "my_plugins/bclose.vim"]
+	path = my_plugins/bclose.vim
+	url = https://github.com/rbgrouleff/bclose.vim.git
+[submodule "my_plugins/dart-vim-plugin"]
+	path = my_plugins/dart-vim-plugin
+	url = https://github.com/dart-lang/dart-vim-plugin
+[submodule "my_plugins/friendly-snippets"]
+	path = my_plugins/friendly-snippets
+	url = https://github.com/rafamadriz/friendly-snippets
+[submodule "my_plugins/fzf.vim"]
+	path = my_plugins/fzf.vim
+	url = https://github.com/junegunn/fzf.vim
+[submodule "my_plugins/gruber-darker.nvim"]
+	path = my_plugins/gruber-darker.nvim
+	url = https://github.com/blazkowolf/gruber-darker.nvim
+[submodule "my_plugins/img-paste.vim"]
+	path = my_plugins/img-paste.vim
+	url = https://github.com/img-paste-devs/img-paste.vim
+[submodule "my_plugins/lightline-bufferline"]
+	path = my_plugins/lightline-bufferline
+	url = https://github.com/mengelbrecht/lightline-bufferline
+[submodule "my_plugins/markdown-preview.nvim"]
+	path = my_plugins/markdown-preview.nvim
+	url = https://github.com/iamcco/markdown-preview.nvim
+[submodule "my_plugins/nnn.vim"]
+	path = my_plugins/nnn.vim
+	url = git@github.com-alt:mcchrish/nnn.vim
+[submodule "my_plugins/php.vim"]
+	path = my_plugins/php.vim
+	url = https://github.com/StanAngeloff/php.vim
+[submodule "my_plugins/ranger.vim"]
+	path = my_plugins/ranger.vim
+	url = https://github.com/francoiscabrol/ranger.vim
+[submodule "my_plugins/typst.vim"]
+	path = my_plugins/typst.vim
+	url = https://github.com/kaarmu/typst.vim
+[submodule "my_plugins/vim-dirvish"]
+	path = my_plugins/vim-dirvish
+	url = https://github.com/justinmk/vim-dirvish
+[submodule "my_plugins/vim-dirvish-dovish"]
+	path = my_plugins/vim-dirvish-dovish
+	url = https://github.com/roginfarrer/vim-dirvish-dovish
+[submodule "my_plugins/vim-flutter"]
+	path = my_plugins/vim-flutter
+	url = https://github.com/thosakwe/vim-flutter
+[submodule "my_plugins/vim-lsp"]
+	path = my_plugins/vim-lsp
+	url = https://github.com/prabirshrestha/vim-lsp
+[submodule "my_plugins/vim-lsp-settings"]
+	path = my_plugins/vim-lsp-settings
+	url = https://github.com/mattn/vim-lsp-settings
+[submodule "my_plugins/vim-lsp-snippets"]
+	path = my_plugins/vim-lsp-snippets
+	url = https://github.com/thomasfaingnaert/vim-lsp-snippets
+[submodule "my_plugins/vim-snippets"]
+	path = my_plugins/vim-snippets
+	url = https://github.com/honza/vim-snippets
+[submodule "my_plugins/vim-tmux-navigator"]
+	path = my_plugins/vim-tmux-navigator
+	url = https://github.com/christoomey/vim-tmux-navigator
+[submodule "my_plugins/vim-vinegar"]
+	path = my_plugins/vim-vinegar
+	url = https://github.com/tpope/vim-vinegar
+[submodule "my_plugins/vim-vsnip"]
+	path = my_plugins/vim-vsnip
+	url = https://github.com/hrsh7th/vim-vsnip
+[submodule "my_plugins/vim-vsnip-integ"]
+	path = my_plugins/vim-vsnip-integ
+	url = https://github.com/hrsh7th/vim-vsnip-integ
+[submodule "my_plugins/zettelkasten.vim"]
+	path = my_plugins/zettelkasten.vim
+	url = git@github.com-alt:Deluxe8841/zettelkasten.vim

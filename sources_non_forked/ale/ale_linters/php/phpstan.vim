@@ -22,7 +22,7 @@ function! ale_linters#php#phpstan#GetCommand(buffer, version) abort
 
     let l:memory_limit = ale#Var(a:buffer, 'php_phpstan_memory_limit')
     let l:memory_limit_option = !empty(l:memory_limit)
-    \   ? ' --memory-limit ' . ale#Escape(l:memory_limit)
+    \   ? ' --memory-limit=' . ale#Escape(l:memory_limit)
     \   : ''
 
     let l:level =  ale#Var(a:buffer, 'php_phpstan_level')
@@ -57,12 +57,14 @@ function! ale_linters#php#phpstan#Handle(buffer, lines) abort
         return l:output
     endif
 
-    for l:err in l:res.files[expand('#' . a:buffer .':p')].messages
-        call add(l:output, {
-        \   'lnum': l:err.line,
-        \   'text': l:err.message,
-        \   'type': 'E',
-        \})
+    for l:key in keys(l:res.files)
+        for l:err in l:res.files[l:key].messages
+            call add(l:output, {
+            \   'lnum': l:err.line,
+            \   'text': l:err.message,
+            \   'type': 'E',
+            \})
+        endfor
     endfor
 
     return l:output

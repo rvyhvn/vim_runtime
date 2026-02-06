@@ -17,6 +17,11 @@ let s:default_registry = {
 \       'suggested_filetypes': ['help'],
 \       'description': 'Align help tags to the right margin',
 \   },
+\   'apkbuild-fixer': {
+\       'function': 'ale#fixers#apkbuild_fixer#Fix',
+\       'suggested_filetypes': ['apkbuild'],
+\       'description': 'Fix policy violations found by apkbuild-lint in APKBUILDs',
+\   },
 \   'autoimport': {
 \       'function': 'ale#fixers#autoimport#Fix',
 \       'suggested_filetypes': ['python'],
@@ -36,6 +41,11 @@ let s:default_registry = {
 \       'function': 'ale#fixers#bibclean#Fix',
 \       'suggested_filetypes': ['bib'],
 \       'description': 'Format bib files using bibclean.',
+\   },
+\   'biome': {
+\       'function': 'ale#fixers#biome#Fix',
+\       'suggested_filetypes': ['javascript', 'typescript', 'json', 'jsonc', 'css', 'graphql'],
+\       'description': 'Fix JavaScript and TypeScript using biome.',
 \   },
 \   'black': {
 \       'function': 'ale#fixers#black#Fix',
@@ -88,15 +98,41 @@ let s:default_registry = {
 \       'suggested_filetypes': ['dhall'],
 \       'description': 'Standard code formatter for the Dhall language and removing dead code',
 \   },
+\   'djlint': {
+\       'function': 'ale#fixers#djlint#Fix',
+\       'suggested_filetypes': ['html', 'htmldjango', 'htmlangular', 'jinja', 'handlebars', 'nunjucks', 'gohtmltmpl'],
+\       'description': 'Fix HTML templates with `djlint --reformat`.',
+\   },
 \   'dune': {
 \       'function': 'ale#fixers#dune#Fix',
 \       'suggested_filetypes': ['dune'],
 \       'description': 'Fix dune files with dune format',
 \   },
+\   'erlang_mode': {
+\       'function': 'ale#fixers#erlang_mode#Fix',
+\       'suggested_filetypes': ['erlang'],
+\       'description': 'Indent with the Erlang mode for Emacs',
+\       'aliases': ['erlang-mode'],
+\   },
+\   'erlfmt': {
+\       'function': 'ale#fixers#erlfmt#Fix',
+\       'suggested_filetypes': ['erlang'],
+\       'description': 'Format Erlang code with erlfmt',
+\   },
 \   'fecs': {
 \       'function': 'ale#fixers#fecs#Fix',
 \       'suggested_filetypes': ['javascript', 'css', 'html'],
 \       'description': 'Apply fecs format to a file.',
+\   },
+\   'hurlfmt': {
+\       'function': 'ale#fixers#hurlfmt#Fix',
+\       'suggested_filetypes': ['hurl'],
+\       'description': 'Fix hurl files with hurlfmt.',
+\   },
+\   'kulala_fmt': {
+\       'function': 'ale#fixers#kulala_fmt#Fix',
+\       'suggested_filetypes': ['http', 'rest'],
+\       'description': 'Fix http and rest files with kulala_fmt.',
 \   },
 \   'tidy': {
 \       'function': 'ale#fixers#tidy#Fix',
@@ -127,7 +163,7 @@ let s:default_registry = {
 \   },
 \   'eslint': {
 \       'function': 'ale#fixers#eslint#Fix',
-\       'suggested_filetypes': ['javascript', 'typescript'],
+\       'suggested_filetypes': ['javascript', 'typescript', 'astro'],
 \       'description': 'Apply eslint --fix to a file.',
 \   },
 \   'mix_format': {
@@ -142,7 +178,7 @@ let s:default_registry = {
 \   },
 \   'prettier': {
 \       'function': 'ale#fixers#prettier#Fix',
-\       'suggested_filetypes': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'json5', 'graphql', 'markdown', 'vue', 'svelte', 'html', 'yaml', 'openapi', 'ruby'],
+\       'suggested_filetypes': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'json5', 'graphql', 'markdown', 'vue', 'svelte', 'html', 'yaml', 'openapi', 'ruby', 'astro'],
 \       'description': 'Apply prettier to a file.',
 \   },
 \   'prettier_eslint': {
@@ -190,6 +226,11 @@ let s:default_registry = {
 \       'function': 'ale#fixers#yapf#Fix',
 \       'suggested_filetypes': ['python'],
 \       'description': 'Fix Python files with yapf.',
+\   },
+\   'yq': {
+\       'function': 'ale#fixers#yq#Fix',
+\       'suggested_filetypes': ['yaml'],
+\       'description': 'Fix YAML files with yq.',
 \   },
 \   'rubocop': {
 \       'function': 'ale#fixers#rubocop#Fix',
@@ -310,6 +351,11 @@ let s:default_registry = {
 \       'function': 'ale#fixers#goimports#Fix',
 \       'suggested_filetypes': ['go'],
 \       'description': 'Fix Go files imports with goimports.',
+\   },
+\   'golangci_lint': {
+\       'function': 'ale#fixers#golangci_lint#Fix',
+\       'suggested_filetypes': ['go'],
+\       'description': 'Fix Go files with golangci-lint.',
 \   },
 \   'golines': {
 \       'function': 'ale#fixers#golines#Fix',
@@ -441,6 +487,11 @@ let s:default_registry = {
 \       'suggested_filetypes': ['json'],
 \       'description': 'Fix JSON files with jq.',
 \   },
+\   'json_pytool': {
+\       'function': 'ale#fixers#json_pytool#Fix',
+\       'suggested_filetypes': ['json'],
+\       'description': "Fix JSON files with python's built-in json.tool module.",
+\   },
 \   'protolint': {
 \       'function': 'ale#fixers#protolint#Fix',
 \       'suggested_filetypes': ['proto'],
@@ -551,6 +602,11 @@ let s:default_registry = {
 \       'suggested_filetypes': ['html', 'htmldjango'],
 \       'description': 'Fix HTML files with html-beautify from js-beautify.',
 \   },
+\   'htmlbeautifier': {
+\       'function': 'ale#fixers#htmlbeautifier#Fix',
+\       'suggested_filetypes': ['eruby'],
+\       'description': 'Fix ERB files with htmlbeautifier gem.',
+\   },
 \   'lua-format': {
 \       'function': 'ale#fixers#lua_format#Fix',
 \       'suggested_filetypes': ['lua'],
@@ -651,10 +707,45 @@ let s:default_registry = {
 \       'suggested_filetypes': ['ruby'],
 \       'description': 'A formatter for Ruby source code',
 \   },
-\   'biome': {
-\       'function': 'ale#fixers#biome#Fix',
-\       'suggested_filetypes': ['javascript', 'typescript'],
-\       'description': 'Apply biome (ex. rome) check to a file.',
+\   'scadformat': {
+\       'function': 'ale#fixers#scadformat#Fix',
+\       'suggested_filetypes': ['openscad'],
+\       'description': 'Formatter for scad files',
+\   },
+\   'cljfmt': {
+\       'function': 'ale#fixers#cljfmt#Fix',
+\       'suggested_filetypes': ['clojure'],
+\       'description': 'formatter and linter for clojure files',
+\   },
+\   'typstyle': {
+\       'function': 'ale#fixers#typstyle#Fix',
+\       'suggested_filetypes': ['typst'],
+\       'description': 'A formatter for Typst files',
+\   },
+\   'roc_format': {
+\       'function': 'ale#fixers#roc_format#Fix',
+\       'suggested_filetypes': ['roc'],
+\       'description': 'Formats Roc files.',
+\   },
+\   'roc_annotate': {
+\       'function': 'ale#fixers#roc_annotate#Fix',
+\       'suggested_filetypes': ['roc'],
+\       'description': 'Annotates all top-level definitions in Roc files.',
+\   },
+\   'tombi_format': {
+\       'function': 'ale#fixers#tombi_format#Fix',
+\       'suggested_filetypes': ['toml'],
+\       'description': 'Formats TOML files',
+\   },
+\   'tombi_lint': {
+\       'function': 'ale#fixers#tombi_lint#Fix',
+\       'suggested_filetypes': ['toml'],
+\       'description': 'Lints TOML files',
+\   },
+\   'verible_format': {
+\       'function': 'ale#fixers#verible_format#Fix',
+\       'suggested_filetypes': ['verilog'],
+\       'description': 'Formats verilog files using verible.',
 \   },
 \}
 

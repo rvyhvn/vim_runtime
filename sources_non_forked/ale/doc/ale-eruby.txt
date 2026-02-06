@@ -7,6 +7,7 @@ There are four linters for `eruby` files:
 - `erblint`
 - `erubis`
 - `erubi`
+- `htmlbeautifier`
 - `ruumba`
 
 `erb` is in the Ruby standard library and is mostly universal. `erubis` is the
@@ -18,8 +19,11 @@ the result. To selectively enable a subset, see |g:ale_linters|.
 ===============================================================================
 erb-formatter                                          *ale-eruby-erbformatter*
 
-g:ale_eruby_erbformatter_executable       *g:ale_eruby_erbformatter_executable*
+                                    *ale-options.eruby_erbformatter_executable*
+                                          *g:ale_eruby_erbformatter_executable*
                                           *b:ale_eruby_erbformatter_executable*
+eruby_erbformatter_executable
+g:ale_eruby_erbformatter_executable
   Type: |String|
   Default: `'erb-formatter'`
 
@@ -30,17 +34,22 @@ g:ale_eruby_erbformatter_executable       *g:ale_eruby_erbformatter_executable*
 ===============================================================================
 erblint                                                     *ale-eruby-erblint*
 
-g:ale_eruby_erblint_executable                 *g:ale_eruby_erblint_executable*
+                                         *ale-options.eruby_erblint_executable*
+                                               *g:ale_eruby_erblint_executable*
                                                *b:ale_eruby_erblint_executable*
+eruby_erblint_executable
+g:ale_eruby_erblint_executable
   Type: |String|
   Default: `'erblint'`
 
   Override the invoked erblint binary. This is useful for running erblint
   from binstubs or a bundle.
 
-
-g:ale_eruby_erblint_options                        *g:ale_ruby_erblint_options*
+                                            *ale-options.eruby_erblint_options*
+                                                  *g:ale_eruby_erblint_options*
                                                    *b:ale_ruby_erblint_options*
+eruby_erblint_options
+g:ale_eruby_erblint_options
   Type: |String|
   Default: `''`
 
@@ -48,19 +57,39 @@ g:ale_eruby_erblint_options                        *g:ale_ruby_erblint_options*
 
 
 ===============================================================================
+htmlbeautifier                                       *ale-eruby-htmlbeautifier*
+
+                                  *ale-options.eruby_htmlbeautifier_executable*
+                                        *g:ale_eruby_htmlbeautifier_executable*
+                                        *b:ale_eruby_htmlbeautifier_executable*
+eruby_htmlbeautifier_executable
+g:ale_eruby_htmlbeautifier_executable
+  Type: |String|
+  Default: `'htmlbeautifier'`
+
+  Override the invoked htmlbeautifier binary. This is useful for running
+  htmlbeautifier from binstubs or a bundle.
+
+
+===============================================================================
 ruumba                                                       *ale-eruby-ruumba*
 
-g:ale_eruby_ruumba_executable                   *g:ale_eruby_ruumba_executable*
+                                          *ale-options.eruby_ruumba_executable*
+                                                *g:ale_eruby_ruumba_executable*
                                                 *b:ale_eruby_ruumba_executable*
+eruby_ruumba_executable
+g:ale_eruby_ruumba_executable
   Type: |String|
   Default: `'ruumba'`
 
   Override the invoked ruumba binary. This is useful for running ruumba
   from binstubs or a bundle.
 
-
-g:ale_eruby_ruumba_options                          *g:ale_ruby_ruumba_options*
+                                             *ale-options.eruby_ruumba_options*
+                                                   *g:ale_eruby_ruumba_options*
                                                     *b:ale_ruby_ruumba_options*
+eruby_ruumba_options
+g:ale_eruby_ruumba_options
   Type: |String|
   Default: `''`
 

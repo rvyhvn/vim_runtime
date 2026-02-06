@@ -1,2 +1,2 @@
-.   .gitkeep  gruvbox  toinstall.txt            vim-colors-meh  vim-endwise        vim-monochrome  vimtex
-..  coc.nvim  rainbow  vim-256noir-colorscheme  vim-commentary  vim-indent-guides  vim-sunbather   
+friendlysnippets
+vim-vsnip
