@@ -435,4 +435,7 @@ PS: Using Vim isn't a requirement 😄
 - vscode-html-language-server
 - vscode-json-language-server
 - yaml-language-server
+- clangd
+- jdtls
+- julia
 
